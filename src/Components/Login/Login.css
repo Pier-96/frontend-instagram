@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@300;400;500;600&family=Zen+Kurenaido&display=swap');
-
 html {
   height: 100%;
 }
@@ -82,22 +80,7 @@ input[type='submit']:hover {
   background-color: #0286df;
 }
 
-/* Media queries Medium */
-
-@media screen and (max-width: 1024px) {
-  .login-box {
-    width: 400px;
-  }
-}
-/* Media queries Small  */
-
-@media screen and (max-width: 600px) {
-  .login-box {
-    width: 80%;
-  }
-}
-
-toSignup {
+.toSignup {
   font-size: 12px;
   text-align: center;
   color: white;
@@ -113,4 +96,19 @@ toSignup {
   color: #0095f6;
   cursor: pointer;
   font-weight: 300;
+}
+
+/* Media queries Medium */
+
+@media screen and (max-width: 1024px) {
+  .login-box {
+    width: 400px;
+  }
+}
+/* Media queries Small  */
+
+@media screen and (max-width: 600px) {
+  .login-box {
+    width: 80%;
+  }
 }
