@@ -1,16 +1,26 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { Link, Navigate } from 'react-router-dom';
 import { FiUserCheck } from 'react-icons/fi';
+import { useToken } from '../../TokenContext';
+// import { Toaster, toast } from 'react-hot-toast';
 
 const Login = () => {
+  const [token, setToken] = useToken();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  if (token) return <Navigate to='/posts' />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setStatus('loading');
+    setError(null);
+    setLoading(true);
 
     try {
       const response = await fetch('http://localhost:4000/login', {
@@ -24,13 +34,18 @@ const Login = () => {
         }),
       });
 
-      if (!response.ok) throw new Error(response.statusText);
+      const body = await response.json();
 
-      // const {data} = await response.json()
-      setStatus('success');
+      if (body.status === 'error') {
+        setError(body.message);
+      } else {
+        setToken(body.data.token);
+      }
     } catch (err) {
       console.log(err);
-      setStatus('error');
+      setLoading('error');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -60,13 +75,16 @@ const Login = () => {
               />
               <label>Password</label>
             </div>
-            <input type='submit' value='Log In' />
+            <input disabled={loading} type='submit' value='Log In' />
           </form>
           <hr />
           <p className='toSignup'>
             <span>Aún no tienes cuenta?</span>
-            <span className='toSignupButton'>Registrate</span>
+            <Link to='/signup'>
+              <span className='toSignupButton'>Registrate</span>
+            </Link>
           </p>
+          {error && <p className='Error'>{error}</p>}
         </section>
       </div>
     </>
