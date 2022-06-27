@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Login.css';
 import { Link, Navigate } from 'react-router-dom';
-// import { FiUserCheck } from 'react-icons/fi';
+import { FiUserCheck } from 'react-icons/fi';
 import { useToken } from '../../TokenContext';
 // import { Toaster, toast } from 'react-hot-toast';
 
@@ -52,8 +52,9 @@ const Login = () => {
   return (
     <>
       <div className='login-box'>
+        <img src='biglogo.png' alt='biglogo' />
         <h2>
-          {/* <FiUserCheck /> */}
+          <FiUserCheck />
         </h2>
         <section>
           <form onSubmit={handleSubmit}>
@@ -80,7 +81,7 @@ const Login = () => {
           <hr />
           <p className='toSignup'>
             <span>Aún no tienes cuenta?</span>
-            <Link to='/signup'>
+            <Link className='linksTwo' to='/signup'>
               <span className='toSignupButton'>Registrate</span>
             </Link>
           </p>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
-
+import { FiUserPlus } from 'react-icons/fi';
 import './Signup.css';
 
 const Signup = () => {
@@ -62,56 +62,56 @@ const Signup = () => {
 
   if (token) return <Navigate to='/' />;
 
-  return (<>
-    <div className='login-box'>
-      <h2>
-        {/* <FiUserCheck /> */}
-      </h2>
-      <section>
-        <form onSubmit={handleSubmit}>
-          <div className='user-box'>
-            <input
-              id='username'
-              type='text'
-              required
-              onChange={(e) => setUsername(e.target.value)}
-            />
-            <label>Username</label>
-          </div>
-          <div className='user-box'>
-            <input
-              id='email'
-              type='text'
-              required
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <label>Email</label>
-          </div>
-          <div className='user-box'>
-            <input
-              id='password'
-              type='password'
-              required
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <label>Password</label>
-          </div>
-          <input disabled={loading} type='submit' value='Log In' />
-        </form>
-        <hr />
-        <p className='toSignup'>
-          <span>Aún no tienes cuenta?</span>
-          <Link to='/signup'>
-            <span className='toSignupButton'>Registrate</span>
-          </Link>
-        </p>
-        {error && <p className='Error'>{error}</p>}
-      </section>
-    </div>
-  </>
+  return (
+    <>
+      <div className='login-box'>
+        <img src='biglogo.png' alt='biglogo' />
+        <h2>
+          <FiUserPlus />
+        </h2>
+        <section>
+          <form onSubmit={handleSubmit}>
+            <div className='user-box'>
+              <input
+                id='username'
+                type='text'
+                required
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <label>Username</label>
+            </div>
+            <div className='user-box'>
+              <input
+                id='email'
+                type='text'
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <label>Email</label>
+            </div>
+            <div className='user-box'>
+              <input
+                id='password'
+                type='password'
+                required
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <label>Password</label>
+            </div>
+            <input disabled={loading} type='submit' value='Sign In' />
+          </form>
+          <hr />
+          <p className='toSignup'>
+            <span>Ya tienes cuenta?</span>
+            <Link className='linksTwo' to='/'>
+              <span className='toSignupButton'>Iniciar Sesión</span>
+            </Link>
+          </p>
+          {error && <p className='Error'>{error}</p>}
+        </section>
+      </div>
+    </>
   );
 };
-
-
 
 export default Signup;
