@@ -1,0 +1,43 @@
+main.MainPost {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #15202b;
+}
+
+ul.PostList {
+  list-style: none;
+}
+
+ul.PostList > li {
+  padding-top: 0.5rem;
+  border: 1px solid rgb(119, 107, 107);
+  border-radius: 2px;
+  box-shadow: 1px 1px 10px 2px rgba(250, 249, 249, 0.374);
+}
+
+ul.PostList > li > header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+ul.PostList > li > div {
+  display: flex;
+  flex-direction: column;
+}
+
+ul.PostList > li > div > p {
+  padding: 0.7rem;
+}
+
+ul.PostList > li > div > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+footer > div.like-section {
+  display: flex;
+  align-items: center;
+  padding: 0.6rem;
+}
