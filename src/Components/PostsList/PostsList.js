@@ -35,7 +35,7 @@ const PostsList = () => {
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
-        console.log(error);
+        
       } else {
         setPosts(body.data.posts);
       }
@@ -51,6 +51,8 @@ const PostsList = () => {
 
     getAllPosts();
   };
+  
+
 
   useEffect(() => {
     getAllPosts();

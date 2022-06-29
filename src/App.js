@@ -14,7 +14,7 @@ function App() {
         <Route path='/signup' element={<Signup />} />
         <Route path='/posts' element={<PostsList />} />
         <Route path='/new' element={<NewPost />} />
-        <Route path='/posts/:post_id' element={<Onepost />} />
+        <Route path='/posts/:idPost' element={<Onepost />} />
       </Routes>
     </div>
   );
