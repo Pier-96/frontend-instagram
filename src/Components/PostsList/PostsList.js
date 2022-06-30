@@ -23,10 +23,10 @@ const PostsList = () => {
 
     const params = token
       ? {
-        headers: {
-          Authorization: token,
-        },
-      }
+          headers: {
+            Authorization: token,
+          },
+        }
       : {};
 
     try {
@@ -65,15 +65,12 @@ const PostsList = () => {
     const idPost = li.getAttribute('post-id');
 
     try {
-      const res = await fetch(
-        `http://localhost:4000/posts/${idPost}/like`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
+      const res = await fetch(`http://localhost:4000/posts/${idPost}/like`, {
+        method: 'POST',
+        headers: {
+          Authorization: token,
+        },
+      });
 
       const body = await res.json();
 
@@ -88,7 +85,6 @@ const PostsList = () => {
       setLoading(false);
     }
   };
-
 
   useEffect(() => {
     getAllPosts();
@@ -111,15 +107,17 @@ const PostsList = () => {
               Buscar
             </button>
           </form>
-          <a href='/posts'>
-            <MdHome className='icon-style' />
-          </a>
-          <a href='/new'>
-            <MdOutlineAddToPhotos className='icon-style' />
-          </a>
-          <a href='/profile'>
-            <MdAccountCircle className='icon-style' />
-          </a>
+          <div className='icons-main'>
+            <a href='/posts'>
+              <MdHome className='icon-style' />
+            </a>
+            <a href='/new'>
+              <MdOutlineAddToPhotos className='icon-style' />
+            </a>
+            <a href='/profile'>
+              <MdAccountCircle className='icon-style' />
+            </a>
+          </div>
         </nav>
         {error && <p className='Error'>{error}</p>}
 

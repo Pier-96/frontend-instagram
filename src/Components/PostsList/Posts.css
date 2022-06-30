@@ -7,7 +7,8 @@ main.MainPost {
 
 ul.PostList {
   list-style: none;
-  padding-top: 6.4rem;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
 }
 
 ul.PostList > li {
@@ -46,12 +47,17 @@ footer > div.like-section {
 nav.Nav-search {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  height: 100px;
+  justify-content: space-around;
+  height: 80px;
   width: 100%;
   position: fixed;
   background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(15px);
+}
+
+.icons-main {
+  display: flex;
+  gap: 1rem;
 }
 
 .searchbutton {
@@ -62,10 +68,6 @@ nav.Nav-search {
 nav.Nav-search > img {
   height: 40px;
   border-radius: 10px;
-}
-
-nav.Nav-search > a {
-  color: rgb(247, 249, 249);
 }
 
 nav.Nav-search > form {
@@ -89,8 +91,55 @@ nav.Nav-search > form > input[type='text']:focus {
   width: 35px;
   display: flex;
   align-items: center;
+  color: white;
 }
 
 .lupa {
   color: rgb(247, 249, 249);
+}
+
+/* Media queries Medium */
+
+@media screen and (max-width: 1024px) {
+  nav.Nav-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+  }
+
+  .icons-main {
+    gap: 0.1rem;
+  }
+
+  ul.PostList {
+    padding-top: 6.3rem;
+  }
+}
+/* Media queries Small  */
+
+@media screen and (max-width: 600px) {
+  nav.Nav-search {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+  }
+
+  .icons-main {
+    gap: 0.1rem;
+  }
+
+  ul.PostList {
+    padding-top: 6.4rem;
+    padding-bottom: 0.5rem;
+  }
 }
