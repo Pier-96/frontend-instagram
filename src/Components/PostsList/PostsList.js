@@ -3,7 +3,10 @@ import './Posts.css';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
 import { FaRegUser } from 'react-icons/fa';
-import Navbar from '../Navbar/Navbar';
+import { MdOutlineAddToPhotos } from 'react-icons/md';
+import { MdHome } from 'react-icons/md';
+import { MdAccountCircle } from 'react-icons/md';
+import { MdOutlineSearch } from 'react-icons/md';
 
 const PostsList = () => {
   const [token] = useToken();
@@ -35,7 +38,6 @@ const PostsList = () => {
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
-        
       } else {
         setPosts(body.data.posts);
       }
@@ -51,8 +53,6 @@ const PostsList = () => {
 
     getAllPosts();
   };
-  
-
 
   useEffect(() => {
     getAllPosts();
@@ -60,18 +60,31 @@ const PostsList = () => {
 
   return (
     <>
-      <Navbar />
       <main className='MainPost'>
-        <form onSubmit={handleSubmit}>
-          <input
-            type='text'
-            name='keyword'
-            placeholder=' Busca un post'
-            onChange={(e) => setKeyword(e.target.value)}
-          />
-          <button disabled={loading}>Buscar</button>
-        </form>
-
+        <nav className='Nav-search'>
+          <img src='minilogo.png' alt='minilogo' />
+          <form onSubmit={handleSubmit}>
+            <MdOutlineSearch className='lupa' />
+            <input
+              type='text'
+              name='keyword'
+              placeholder=' Busca un post'
+              onChange={(e) => setKeyword(e.target.value)}
+            />
+            <button className='searchbutton' disabled={loading}>
+              Buscar
+            </button>
+          </form>
+          <a href='/posts'>
+            <MdHome className='icon-style' />
+          </a>
+          <a href='/new'>
+            <MdOutlineAddToPhotos className='icon-style' />
+          </a>
+          <a href='/profile'>
+            <MdAccountCircle className='icon-style' />
+          </a>
+        </nav>
         {error && <p className='Error'>{error}</p>}
 
         {posts && (

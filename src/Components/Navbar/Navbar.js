@@ -12,13 +12,13 @@ const Navbar = () => {
       <a href='hehe'>
         <MdOutlineSearch />
       </a>
-      <a href='posts'>
+      <a href='/posts'>
         <MdHome />
       </a>
-      <a href='aquielpathparasubirfoto'>
+      <a href='/new'>
         <MdOutlineAddToPhotos />
       </a>
-      <a href='proximopathprofile'>
+      <a href='/profile'>
         <MdAccountCircle />
       </a>
     </nav>
