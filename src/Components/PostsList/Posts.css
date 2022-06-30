@@ -7,6 +7,7 @@ main.MainPost {
 
 ul.PostList {
   list-style: none;
+  padding-top: 6.4rem;
 }
 
 ul.PostList > li {
@@ -40,4 +41,56 @@ footer > div.like-section {
   display: flex;
   align-items: center;
   padding: 0.6rem;
+}
+
+nav.Nav-search {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+}
+
+.searchbutton {
+  visibility: hidden;
+  width: 1px;
+}
+
+nav.Nav-search > img {
+  height: 40px;
+  border-radius: 10px;
+}
+
+nav.Nav-search > a {
+  color: rgb(247, 249, 249);
+}
+
+nav.Nav-search > form {
+  display: flex;
+  align-items: center;
+}
+
+nav.Nav-search > form > input[type='text'] {
+  padding: 0.5rem;
+  margin: 8px 0;
+  border-radius: 20px;
+  border: 2px solid rgb(247, 249, 249);
+}
+
+nav.Nav-search > form > input[type='text']:focus {
+  border: 3px solid rgb(91, 91, 252);
+}
+
+.icon-style {
+  height: 20px;
+  width: 35px;
+  display: flex;
+  align-items: center;
+}
+
+.lupa {
+  color: rgb(247, 249, 249);
 }
