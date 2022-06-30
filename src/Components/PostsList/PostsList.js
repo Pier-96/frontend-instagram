@@ -1,5 +1,6 @@
 import React from 'react';
 import './Posts.css';
+import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
 import { FaRegUser } from 'react-icons/fa';
@@ -89,6 +90,8 @@ const PostsList = () => {
   useEffect(() => {
     getAllPosts();
   }, [update]);
+
+  if (!token) return <Navigate to='/' />;
 
   return (
     <>
