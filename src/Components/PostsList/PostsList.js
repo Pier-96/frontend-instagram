@@ -20,10 +20,10 @@ const PostsList = () => {
 
     const params = token
       ? {
-          headers: {
-            Authorization: token,
-          },
-        }
+        headers: {
+          Authorization: token,
+        },
+      }
       : {};
 
     try {
@@ -35,7 +35,7 @@ const PostsList = () => {
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
-        
+
       } else {
         setPosts(body.data.posts);
       }
@@ -51,7 +51,43 @@ const PostsList = () => {
 
     getAllPosts();
   };
-  
+
+
+
+  const handleLike = async (e) => {
+    setLoading(true);
+    setError(null);
+
+    e.target.classList.toggle('IsAnimating');
+
+    const li = e.target.closest('li');
+
+    const idPost = li.getAttribute('post-id');
+
+    try {
+      const res = await fetch(
+        `http://localhost:4000/posts/${idPost}/like`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      const body = await res.json();
+
+      if (body.status === 'error') {
+        setError(body.message);
+      } else {
+        setUpdate(!update);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   useEffect(() => {
@@ -78,7 +114,7 @@ const PostsList = () => {
           <ul className='PostList'>
             {posts.map((post) => {
               return (
-                <li key={post.id}>
+                <li key={post.id} post-id={post.id}>
                   <header>
                     <p>
                       <FaRegUser />
@@ -96,7 +132,7 @@ const PostsList = () => {
                     <p>{post.text}</p>
                   </div>
                   <footer>
-                    <div className='like-section'>
+                    <div className='like-section' onClick={handleLike}>
                       <p>♥ {post.likes}</p>
                     </div>
                   </footer>
