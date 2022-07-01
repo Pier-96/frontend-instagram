@@ -87,6 +87,37 @@ const PostsList = () => {
     }
   };
 
+  const handleDeletePost = async (idPost) => {
+    setLoading(true);
+    setError(null);
+
+    if (window.confirm('¿Deseas eliminar el post?')) {
+      try {
+        const res = await fetch(
+          `http://localhost:4000/posts/${idPost}`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authorization: token,
+            },
+          }
+        );
+
+        const body = await res.json();
+
+        if (body.status === 'error') {
+          setError(body.message);
+        } else {
+          setUpdate(!update);
+        }
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+  };
+
   useEffect(() => {
     getAllPosts();
   }, [update]);
@@ -147,9 +178,22 @@ const PostsList = () => {
                       <p>{post.text}</p>
                     </div>
                     <footer>
-                      <div className='like-section' onClick={handleLike}>
+                      <div className={`like-section $
+                      {token && post.likeByMe && 'IsAnimating'
+                      }`} 
+                      onClick={token && handleLike}>
                         <p>♥ {post.likes}</p>
                       </div>
+                   
+                      {token && post.owner === 1 && (
+                        <button
+                          onClick={() =>
+                            handleDeletePost(post.id)
+                          }
+                        >
+                        Eliminar
+                      </button>
+                    )}
                     </footer>
                   </li>
                 );
