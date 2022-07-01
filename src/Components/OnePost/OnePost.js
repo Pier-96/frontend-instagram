@@ -8,7 +8,6 @@ const OnePost = () => {
   const { idPost } = useParams();
 
   const post = useFetch(`http://localhost:4000/posts/${idPost}`);
-  console.log(post);
   if (!post) {
     return <div className='onePost'>Cargando...</div>;
   }
@@ -29,6 +28,7 @@ const OnePost = () => {
           <footer>
             <div className='like-section'>
               <p>♥ {post.likes}</p>
+              <p>{post.owner}</p>
             </div>
           </footer>
         </div>

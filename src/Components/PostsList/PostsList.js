@@ -37,7 +37,7 @@ const PostsList = () => {
       );
 
       const body = await response.json();
-      console.log(body.data.posts);
+
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
@@ -65,7 +65,7 @@ const PostsList = () => {
 
     const li = e.target.closest('li');
 
-    const idPost = li.getAttribute('post-id');
+    const idPost = li.getAttribute('data-id');
 
     try {
       const res = await fetch(`http://localhost:4000/posts/${idPost}/like`, {
@@ -89,15 +89,11 @@ const PostsList = () => {
     }
   };
 
-  const handleDeletePost = async (e) => {
+  const handleDeletePost = async (idPost) => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm('¿Deseas eliminar el post?')) {
-      const li = e.target.closest('li');
-
-      const idPost = li.getAttribute('post-id');
-
+    if (window.confirm('¿Deseas eliminar el tweet?')) {
       try {
         const res = await fetch(`http://localhost:4000/posts/${idPost}`, {
           method: 'DELETE',
@@ -164,7 +160,7 @@ const PostsList = () => {
             <ul className='PostList'>
               {posts.map((post) => {
                 return (
-                  <li key={post.id} post-id={post.id}>
+                  <li key={post.id} data-id={post.id}>
                     <header>
                       <p>
                         <FaRegUser />
@@ -189,10 +185,13 @@ const PostsList = () => {
                         onClick={token && handleLike}
                       >
                         <p>♥ {post.likes}</p>
-                        <p> {post.owner} cuantos son</p>
+                        <p> Soy owner? Si es uno si - {post.owner}</p>
                       </div>
+                      s
                       {token && post.owner === 1 && (
-                        <button onClick={handleDeletePost}>Eliminar</button>
+                        <button onClick={() => handleDeletePost(post.id)}>
+                          Eliminar
+                        </button>
                       )}
                     </footer>
                   </li>
