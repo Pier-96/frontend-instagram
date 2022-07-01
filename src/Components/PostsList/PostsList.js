@@ -95,67 +95,69 @@ const PostsList = () => {
 
   return (
     <>
-      <main className='MainPost'>
-        <nav className='Nav-search'>
-          <img src='minilogo.png' alt='minilogo' />
-          <form onSubmit={handleSubmit}>
-            <MdOutlineSearch className='lupa' />
-            <input
-              type='text'
-              name='keyword'
-              placeholder=' Busca un post'
-              onChange={(e) => setKeyword(e.target.value)}
-            />
-            <button className='searchbutton' disabled={loading}>
-              Buscar
-            </button>
-          </form>
-          <div className='icons-main'>
-            <a href='/posts'>
-              <MdHome className='icon-style' />
-            </a>
-            <a href='/new'>
-              <MdOutlineAddToPhotos className='icon-style' />
-            </a>
-            <a href='/profile'>
-              <MdAccountCircle className='icon-style' />
-            </a>
-          </div>
-        </nav>
-        {error && <p className='Error'>{error}</p>}
+      <div className='Post-body'>
+        <main className='MainPost'>
+          <nav className='Nav-search'>
+            <img src='minilogo.png' alt='minilogo' />
+            <form onSubmit={handleSubmit}>
+              <MdOutlineSearch className='lupa' />
+              <input
+                type='text'
+                name='keyword'
+                placeholder=' Busca un post'
+                onChange={(e) => setKeyword(e.target.value)}
+              />
+              <button className='searchbutton' disabled={loading}>
+                Buscar
+              </button>
+            </form>
+            <div className='icons-main'>
+              <a href='/posts'>
+                <MdHome className='icon-style' />
+              </a>
+              <a href='/new'>
+                <MdOutlineAddToPhotos className='icon-style' />
+              </a>
+              <a href='/profile'>
+                <MdAccountCircle className='icon-style' />
+              </a>
+            </div>
+          </nav>
+          {error && <p className='Error'>{error}</p>}
 
-        {posts && (
-          <ul className='PostList'>
-            {posts.map((post) => {
-              return (
-                <li key={post.id} post-id={post.id}>
-                  <header>
-                    <p>
-                      <FaRegUser />
-                      {post.username}
-                    </p>
-                  </header>
-                  <div>
-                    {post.image && (
-                      <img
-                        src={`http://localhost:4000/${post.image}`}
-                        alt='Imagen adjunta'
-                        sizes='470px'
-                      />
-                    )}
-                    <p>{post.text}</p>
-                  </div>
-                  <footer>
-                    <div className='like-section' onClick={handleLike}>
-                      <p>♥ {post.likes}</p>
+          {posts && (
+            <ul className='PostList'>
+              {posts.map((post) => {
+                return (
+                  <li key={post.id} post-id={post.id}>
+                    <header>
+                      <p>
+                        <FaRegUser />
+                        {post.username}
+                      </p>
+                    </header>
+                    <div>
+                      {post.image && (
+                        <img
+                          src={`http://localhost:4000/${post.image}`}
+                          alt='Imagen adjunta'
+                          sizes='470px'
+                        />
+                      )}
+                      <p>{post.text}</p>
                     </div>
-                  </footer>
-                </li>
-              );
-            })}
-          </ul>
-        )}
-      </main>
+                    <footer>
+                      <div className='like-section' onClick={handleLike}>
+                        <p>♥ {post.likes}</p>
+                      </div>
+                    </footer>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </main>
+      </div>
     </>
   );
 };

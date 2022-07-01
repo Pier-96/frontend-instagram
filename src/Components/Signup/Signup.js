@@ -63,7 +63,7 @@ const Signup = () => {
   if (token) return <Navigate to='/' />;
 
   return (
-    <>
+    <div className='body-login'>
       <div className='login-box'>
         <img src='biglogo.png' alt='biglogo' />
         <h2>
@@ -110,7 +110,7 @@ const Signup = () => {
           {error && <p className='Error'>{error}</p>}
         </section>
       </div>
-    </>
+    </div>
   );
 };
 

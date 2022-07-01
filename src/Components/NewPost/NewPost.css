@@ -1,3 +1,8 @@
+.NewPost-body {
+  height: 100vh;
+  background: linear-gradient(#141e30, #7aaae0);
+}
+
 main.NewPost > div > form {
   display: flex;
   flex-direction: column;

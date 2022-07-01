@@ -1,11 +1,6 @@
-html {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-
+.body-login {
+  height: 100vh;
+  width: auto;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(#141e30, #7aaae0);
 }

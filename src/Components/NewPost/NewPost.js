@@ -52,31 +52,33 @@ const NewPost = () => {
   if (!token || success) return <Navigate to='/' />;
 
   return (
-    <main className='NewPost'>
-      <Navbar />
-      <div>
-        <form onSubmit={handleSubmit}>
-          <textarea
-            placeholder='¿Qué está pasando?'
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <div className='upload-confirm'>
-            <label class='custom-file-upload'>
-              <input
-                type='file'
-                onChange={(e) => {
-                  setSelectedFile(e.target.files[0]);
-                }}
-              />
-              <MdOutlineAddPhotoAlternate className='icon-upload' />
-            </label>
-            <button disabled={loading}>Enviar</button>
-          </div>
-        </form>
-      </div>
-      {error && <p className='Error'>{error}</p>}
-    </main>
+    <div className='NewPost-body'>
+      <main className='NewPost'>
+        <Navbar />
+        <div>
+          <form onSubmit={handleSubmit}>
+            <textarea
+              placeholder='¿Qué está pasando?'
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <div className='upload-confirm'>
+              <label class='custom-file-upload'>
+                <input
+                  type='file'
+                  onChange={(e) => {
+                    setSelectedFile(e.target.files[0]);
+                  }}
+                />
+                <MdOutlineAddPhotoAlternate className='icon-upload' />
+              </label>
+              <button disabled={loading}>Enviar</button>
+            </div>
+          </form>
+        </div>
+        {error && <p className='Error'>{error}</p>}
+      </main>
+    </div>
   );
 };
 
