@@ -1,27 +1,23 @@
 import React from 'react';
 import './Navbar.css';
-
-import { MdOutlineAddToPhotos } from 'react-icons/md';
 import { MdHome } from 'react-icons/md';
-import { MdAccountCircle } from 'react-icons/md';
-import { MdOutlineSearch } from 'react-icons/md';
+import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
 const Navbar = () => {
   return (
-    <nav>
-      <a href='hehe'>
-        <MdOutlineSearch />
-      </a>
-      <a href='/posts'>
-        <MdHome />
-      </a>
-      <a href='/new'>
-        <MdOutlineAddToPhotos />
-      </a>
-      <a href='/profile'>
-        <MdAccountCircle />
-      </a>
-    </nav>
+    <main className='Second-nav'>
+      <nav className='Nav-search'>
+        <img src='minilogo.png' alt='minilogo' />
+        <div className='icons-main'>
+          <a href='/posts'>
+            <MdHome className='icon-style' />
+          </a>
+          <a href='/posts'>
+            <BsFillArrowLeftSquareFill className='icon-style' />
+          </a>
+        </div>
+      </nav>
+    </main>
   );
 };
 

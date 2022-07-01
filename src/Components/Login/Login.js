@@ -50,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className='body-login'>
       <div className='login-box'>
         <img src='biglogo.png' alt='biglogo' />
         <h2>
@@ -88,7 +88,7 @@ const Login = () => {
           {error && <p className='Error'>{error}</p>}
         </section>
       </div>
-    </>
+    </div>
   );
 };
 
