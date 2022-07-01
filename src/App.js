@@ -3,7 +3,7 @@ import './App.css';
 import Login from './Components/Login/Login';
 import Signup from './Components/Signup/Signup';
 import PostsList from './Components/PostsList/PostsList';
-import Onepost from './Components/OnePost/OnePost'
+import Onepost from './Components/OnePost/OnePost';
 import NewPost from './Components/NewPost/NewPost';
 
 function App() {

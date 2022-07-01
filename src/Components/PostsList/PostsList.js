@@ -32,10 +32,12 @@ const PostsList = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/posts?keyword=${keyword}`
+        `http://localhost:4000/posts?keyword=${keyword}`,
+        params
       );
 
       const body = await response.json();
+      console.log(body.data.posts);
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
@@ -87,21 +89,22 @@ const PostsList = () => {
     }
   };
 
-  const handleDeletePost = async (idPost) => {
+  const handleDeletePost = async (e) => {
     setLoading(true);
     setError(null);
 
     if (window.confirm('¿Deseas eliminar el post?')) {
+      const li = e.target.closest('li');
+
+      const idPost = li.getAttribute('post-id');
+
       try {
-        const res = await fetch(
-          `http://localhost:4000/posts/${idPost}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        const res = await fetch(`http://localhost:4000/posts/${idPost}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: token,
+          },
+        });
 
         const body = await res.json();
 
@@ -120,9 +123,10 @@ const PostsList = () => {
 
   useEffect(() => {
     getAllPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
-  if (!token) return <Navigate to='/' />;
+  // if (!token) return <Navigate to='/' />;
 
   return (
     <>
@@ -178,22 +182,18 @@ const PostsList = () => {
                       <p>{post.text}</p>
                     </div>
                     <footer>
-                      <div className={`like-section $
-                      {token && post.likeByMe && 'IsAnimating'
-                      }`} 
-                      onClick={token && handleLike}>
+                      <div
+                        className={`like-section ${
+                          token && post.likeByMe && 'IsAnimating'
+                        }`}
+                        onClick={token && handleLike}
+                      >
                         <p>♥ {post.likes}</p>
+                        <p> {post.owner} cuantos son</p>
                       </div>
-                   
                       {token && post.owner === 1 && (
-                        <button
-                          onClick={() =>
-                            handleDeletePost(post.id)
-                          }
-                        >
-                        Eliminar
-                      </button>
-                    )}
+                        <button onClick={handleDeletePost}>Eliminar</button>
+                      )}
                     </footer>
                   </li>
                 );
