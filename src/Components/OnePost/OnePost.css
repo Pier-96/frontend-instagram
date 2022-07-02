@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   background-color: #15202b;
-  height: 100vh;
+  height: 1000px;
 }
 
 .IdPost-content {
@@ -26,4 +26,21 @@
 
 .IdPost-subcontent > p {
   padding: 0.7rem;
+}
+
+.IdPost-content > h1 {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .IdPost {
+    height: 1100px;
+  }
+}
+/* Media queries Small  */
+
+@media screen and (max-width: 600px) {
+  .IdPost {
+    height: 900px;
+  }
 }

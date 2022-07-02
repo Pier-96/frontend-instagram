@@ -28,7 +28,6 @@ const OnePost = () => {
           <footer>
             <div className='like-section'>
               <p>♥ {post.likes}</p>
-              <p>{post.owner}</p>
             </div>
           </footer>
         </div>

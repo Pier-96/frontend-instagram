@@ -6,11 +6,13 @@ import { useToken } from '../../TokenContext';
 import { FaRegUser } from 'react-icons/fa';
 import { MdOutlineAddToPhotos } from 'react-icons/md';
 import { MdHome } from 'react-icons/md';
-import { MdAccountCircle } from 'react-icons/md';
+import { TbLogout } from 'react-icons/tb';
 import { MdOutlineSearch } from 'react-icons/md';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { HiExternalLink } from 'react-icons/hi';
 
 const PostsList = () => {
-  const [token] = useToken();
+  const [token, setToken] = useToken();
   const [keyword, setKeyword] = useState('');
 
   const [posts, setPosts] = useState(null);
@@ -122,7 +124,7 @@ const PostsList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
-  // if (!token) return <Navigate to='/' />;
+  if (!token) return <Navigate to='/' />;
 
   return (
     <>
@@ -149,9 +151,11 @@ const PostsList = () => {
               <a href='/new'>
                 <MdOutlineAddToPhotos className='icon-style' />
               </a>
-              <a href='/profile'>
-                <MdAccountCircle className='icon-style' />
-              </a>
+              {token && (
+                <a href='/' onClick={() => setToken(null)}>
+                  <TbLogout className='icon-style' />
+                </a>
+              )}
             </div>
           </nav>
           {error && <p className='Error'>{error}</p>}
@@ -166,6 +170,9 @@ const PostsList = () => {
                         <FaRegUser />
                         {post.username}
                       </p>
+                      <a href={`posts/${post.id}`} target='_blank'>
+                        <HiExternalLink className='link-externo' />
+                      </a>
                     </header>
                     <div>
                       {post.image && (
@@ -185,15 +192,18 @@ const PostsList = () => {
                         onClick={token && handleLike}
                       >
                         <p>♥ {post.likes}</p>
-                        <p> Soy owner? Si es uno si - {post.owner}</p>
                       </div>
-                      s
+                    </footer>
+                    <div>
                       {token && post.owner === 1 && (
-                        <button onClick={() => handleDeletePost(post.id)}>
-                          Eliminar
+                        <button
+                          className='deleteB-post'
+                          onClick={() => handleDeletePost(post.id)}
+                        >
+                          <BsFillTrashFill className='deleteB-post' />
                         </button>
                       )}
-                    </footer>
+                    </div>
                   </li>
                 );
               })}

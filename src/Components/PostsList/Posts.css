@@ -102,3 +102,21 @@ nav.Nav-search > form > input[type='text']:focus {
 .lupa {
   color: rgb(247, 249, 249);
 }
+
+li > footer > .like-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteB-post {
+  color: rgb(244, 33, 46);
+  background-color: #15202b;
+  height: 20px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.link-externo {
+  color: white;
+}
