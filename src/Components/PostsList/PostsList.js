@@ -185,7 +185,7 @@ const PostsList = () => {
                     <div className='likess'>
                       <div
                         className={`heart ${
-                          token && post.likeByMe && 'IsAnimating'
+                          token && post.likedByMe && 'IsAnimating'
                         }`}
                         onClick={token && handleLike}
                       ></div>
