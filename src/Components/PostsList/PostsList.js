@@ -3,7 +3,7 @@ import './Posts.css';
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
-import { FaRegUser } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineAddToPhotos } from 'react-icons/md';
 import { MdHome } from 'react-icons/md';
 import { TbLogout } from 'react-icons/tb';
@@ -167,8 +167,7 @@ const PostsList = () => {
                   <li key={post.id} data-id={post.id}>
                     <header>
                       <p>
-                        <FaRegUser />
-                        {post.username}
+                        <FaUserAlt /> {post.username}
                       </p>
                       <a href={`posts/${post.id}`} target='_blank'>
                         <HiExternalLink className='link-externo' />
@@ -182,19 +181,20 @@ const PostsList = () => {
                           sizes='470px'
                         />
                       )}
-                      <p>{post.text}</p>
                     </div>
-                    <footer>
+                    <div className='likess'>
                       <div
-                        className={`like-section ${
+                        className={`heart ${
                           token && post.likeByMe && 'IsAnimating'
                         }`}
                         onClick={token && handleLike}
-                      >
-                        <p>♥ {post.likes}</p>
-                      </div>
+                      ></div>
+                      <p>{post.likes} Me gusta</p>
+                    </div>
+                    <footer>
+                      <p>{post.text}</p>
                     </footer>
-                    <div>
+                    <div className='div-delete'>
                       {token && post.owner === 1 && (
                         <button
                           className='deleteB-post'

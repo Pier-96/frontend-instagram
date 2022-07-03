@@ -59,8 +59,8 @@ input[type='file'] {
 }
 
 textarea {
-  color: white;
-  background-color: #2c5184;
+  color: #2c5184;
+  background-color: white;
   border-radius: 10px;
 }
 
