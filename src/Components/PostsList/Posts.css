@@ -26,12 +26,13 @@ ul.PostList > li {
 ul.PostList > li > header {
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
 ul.PostList > li > div {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 }
 
 ul.PostList > li > div > p {
@@ -47,6 +48,11 @@ footer > div.like-section {
   display: flex;
   align-items: center;
   padding: 0.6rem;
+}
+
+footer > p {
+  padding-left: 1.7rem;
+  max-width: 600px;
 }
 
 nav.Nav-search {
@@ -100,5 +106,62 @@ nav.Nav-search > form > input[type='text']:focus {
 }
 
 .lupa {
-  color: rgb(247, 249, 249);
+  color: rgb(18 8 54);
+  position: relative;
+  left: 11rem;
+}
+
+li > footer > .like-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteB-post {
+  color: rgb(244, 33, 46);
+  background-color: #15202b;
+  height: 20px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.link-externo {
+  color: white;
+}
+
+.div-delete {
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+div.heart {
+  cursor: pointer;
+  height: 70px;
+  width: 70px;
+  background-image: url('/public/heart_animation.png');
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: 2900%;
+}
+
+div.heart:hover {
+  background-position: right;
+}
+
+div.heart.IsAnimating {
+  animation: heart-burst 0.8s steps(28) 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes heart-burst {
+  from {
+    background-position: left;
+  }
+  to {
+    background-position: right;
+  }
+}
+
+.likess > p {
+  margin-left: -26px;
 }

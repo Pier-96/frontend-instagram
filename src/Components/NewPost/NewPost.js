@@ -63,7 +63,7 @@ const NewPost = () => {
               onChange={(e) => setText(e.target.value)}
             />
             <div className='upload-confirm'>
-              <label class='custom-file-upload'>
+              <label className='custom-file-upload'>
                 <input
                   type='file'
                   onChange={(e) => {

@@ -3,14 +3,16 @@ import './Posts.css';
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
-import { FaRegUser } from 'react-icons/fa';
+import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineAddToPhotos } from 'react-icons/md';
 import { MdHome } from 'react-icons/md';
-import { MdAccountCircle } from 'react-icons/md';
+import { TbLogout } from 'react-icons/tb';
 import { MdOutlineSearch } from 'react-icons/md';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { HiExternalLink } from 'react-icons/hi';
 
 const PostsList = () => {
-  const [token] = useToken();
+  const [token, setToken] = useToken();
   const [keyword, setKeyword] = useState('');
 
   const [posts, setPosts] = useState(null);
@@ -32,10 +34,12 @@ const PostsList = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:4000/posts?keyword=${keyword}`
+        `http://localhost:4000/posts?keyword=${keyword}`,
+        params
       );
 
       const body = await response.json();
+
       if (body.status === 'error') {
         setPosts(null);
         setError(body.message);
@@ -63,7 +67,7 @@ const PostsList = () => {
 
     const li = e.target.closest('li');
 
-    const idPost = li.getAttribute('post-id');
+    const idPost = li.getAttribute('data-id');
 
     try {
       const res = await fetch(`http://localhost:4000/posts/${idPost}/like`, {
@@ -91,17 +95,14 @@ const PostsList = () => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm('¿Deseas eliminar el post?')) {
+    if (window.confirm('¿Deseas eliminar el tweet?')) {
       try {
-        const res = await fetch(
-          `http://localhost:4000/posts/${idPost}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: token,
-            },
-          }
-        );
+        const res = await fetch(`http://localhost:4000/posts/${idPost}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: token,
+          },
+        });
 
         const body = await res.json();
 
@@ -120,6 +121,7 @@ const PostsList = () => {
 
   useEffect(() => {
     getAllPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [update]);
 
   if (!token) return <Navigate to='/' />;
@@ -149,9 +151,11 @@ const PostsList = () => {
               <a href='/new'>
                 <MdOutlineAddToPhotos className='icon-style' />
               </a>
-              <a href='/profile'>
-                <MdAccountCircle className='icon-style' />
-              </a>
+              {token && (
+                <a href='/' onClick={() => setToken(null)}>
+                  <TbLogout className='icon-style' />
+                </a>
+              )}
             </div>
           </nav>
           {error && <p className='Error'>{error}</p>}
@@ -160,12 +164,14 @@ const PostsList = () => {
             <ul className='PostList'>
               {posts.map((post) => {
                 return (
-                  <li key={post.id} post-id={post.id}>
+                  <li key={post.id} data-id={post.id}>
                     <header>
                       <p>
-                        <FaRegUser />
-                        {post.username}
+                        <FaUserAlt /> {post.username}
                       </p>
+                      <a href={`posts/${post.id}`} target='_blank'>
+                        <HiExternalLink className='link-externo' />
+                      </a>
                     </header>
                     <div>
                       {post.image && (
@@ -175,26 +181,29 @@ const PostsList = () => {
                           sizes='470px'
                         />
                       )}
-                      <p>{post.text}</p>
+                    </div>
+                    <div className='likess'>
+                      <div
+                        className={`heart ${
+                          token && post.likedByMe && 'IsAnimating'
+                        }`}
+                        onClick={token && handleLike}
+                      ></div>
+                      <p>{post.likes} Me gusta</p>
                     </div>
                     <footer>
-                      <div className={`like-section $
-                      {token && post.likeByMe && 'IsAnimating'
-                      }`} 
-                      onClick={token && handleLike}>
-                        <p>♥ {post.likes}</p>
-                      </div>
-                   
+                      <p>{post.text}</p>
+                    </footer>
+                    <div className='div-delete'>
                       {token && post.owner === 1 && (
                         <button
-                          onClick={() =>
-                            handleDeletePost(post.id)
-                          }
+                          className='deleteB-post'
+                          onClick={() => handleDeletePost(post.id)}
                         >
-                        Eliminar
-                      </button>
-                    )}
-                    </footer>
+                          <BsFillTrashFill className='deleteB-post' />
+                        </button>
+                      )}
+                    </div>
                   </li>
                 );
               })}
