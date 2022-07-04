@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# Intagram App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Implementar frontend que permita hacer peticiones al backend de la aplicación.
 
-## Available Scripts
+# RUTAS
 
-In the project directory, you can run:
+[/login] Inicio de sesión
+[/signup] Registro
+[/posts] Muestra todas las publicaciones en orden
+[/posts/new] Ruta donde se crea la publicación
+[/posts/:idPost] Ruta para ver un post en específico
 
-### `npm start`
+# Entidades en la base de datos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# USERS
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+[users] - usuario registrado
 
-### `npm test`
+    - id
+    - username
+    - email
+    - password
+    - createdAt
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# POSTS
 
-### `npm run build`
+[posts]
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - id
+    - idUser
+    - image
+    - text
+    - createdAt
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Likes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[userVotes]
 
-### `npm run eject`
+    - id
+    - idUser
+    - vote
+    - idPost
+    -createdAt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Endpoints clientes (usuarios anónimos)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- GET [/users/:idUser] - Mostrar el perfil de usuario ✅
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- GET [/posts] - Mostrar ÚLTIMAS publicaciones ✅
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- GET [/posts/:idPost] - Buscar una publicacion ✅
 
-## Learn More
+- POST [/login] - Inicio sesión (devuelve token) ✅
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- POST [/users] - Registro de usuario ✅
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Endpoints (usuarios registrados)
 
-### Code Splitting
+POST [/posts] - Permite crear un post (necesita cabecera con token) ✅
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+DELETE [/posts/:idPost] - Borra un post solo si eres quien lo creó (necesita cabecera con token) ✅
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+POST [/posts/:idPost/like] Dar/Quitar un like ✅

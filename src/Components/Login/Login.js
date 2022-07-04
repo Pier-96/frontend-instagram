@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import './Login.css';
+import { useToken } from '../../TokenContext';
 import { Link, Navigate } from 'react-router-dom';
 import { FiUserCheck } from 'react-icons/fi';
-import { useToken } from '../../TokenContext';
-// import { Toaster, toast } from 'react-hot-toast';
 
 const Login = () => {
   const [token, setToken] = useToken();

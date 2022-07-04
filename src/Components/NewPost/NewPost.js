@@ -1,8 +1,10 @@
+import React from 'react';
+import './NewPost.css';
+import Navbar from '../Navbar/Navbar';
+
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
-import Navbar from '../Navbar/Navbar';
-import './NewPost.css';
 import { MdOutlineAddPhotoAlternate } from 'react-icons/md';
 
 const NewPost = () => {
