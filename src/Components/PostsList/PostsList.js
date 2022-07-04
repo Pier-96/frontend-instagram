@@ -3,6 +3,7 @@ import './Posts.css';
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
+import Swal from 'sweetalert2';
 
 // Iconos
 import { FaUserAlt } from 'react-icons/fa';
@@ -108,7 +109,9 @@ const PostsList = () => {
     setLoading(true);
     setError(null);
 
-    if (window.confirm('¿Deseas eliminar el tweet?')) {
+    if (
+      Swal.fire('Borrado!', 'Tu post ha sido eliminado con exito!', 'success')
+    ) {
       try {
         const res = await fetch(`http://localhost:4000/posts/${idPost}`, {
           method: 'DELETE',
