@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+// Función que hace un fetch a un URL y devuelve los datos.
+
 const useFetch = (url) => {
   const [post, setPost] = useState(null);
   const [error, setError] = useState(null);

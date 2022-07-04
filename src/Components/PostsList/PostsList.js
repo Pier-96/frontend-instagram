@@ -3,6 +3,8 @@ import './Posts.css';
 import { Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useToken } from '../../TokenContext';
+
+// Iconos
 import { FaUserAlt } from 'react-icons/fa';
 import { MdOutlineAddToPhotos } from 'react-icons/md';
 import { MdHome } from 'react-icons/md';
@@ -20,9 +22,14 @@ const PostsList = () => {
   const [update, setUpdate] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Fetch de todos los posts
+
   const getAllPosts = async () => {
     setLoading(true);
     setError(null);
+
+    /* Comprueba si tiene token, sí hay le añadira el token al header, sí no
+    tiene no añadira nada. */
 
     const params = token
       ? {
@@ -53,11 +60,15 @@ const PostsList = () => {
     }
   };
 
+  // LLama a la función de posts cuando se haya hecho el submit
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     getAllPosts();
   };
+
+  // Fetch de like
 
   const handleLike = async (e) => {
     setLoading(true);
@@ -91,6 +102,8 @@ const PostsList = () => {
     }
   };
 
+  // Función de borrar post
+
   const handleDeletePost = async (idPost) => {
     setLoading(true);
     setError(null);
@@ -118,6 +131,8 @@ const PostsList = () => {
       }
     }
   };
+
+  // Hook para refrescar la pagina cuando haya cambios
 
   useEffect(() => {
     getAllPosts();

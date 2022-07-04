@@ -107,6 +107,7 @@ textarea {
     justify-content: space-between;
   }
 }
+
 /* Media queries Small  */
 
 @media screen and (max-width: 600px) {
