@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
 import { FiUserPlus } from 'react-icons/fi';
 import './Signup.css';
+import Swal from 'sweetalert2';
 
 const Signup = () => {
   const [token] = useToken();
@@ -36,9 +37,30 @@ const Signup = () => {
       const body = await res.json();
 
       if (body.status === 'error') {
-        setError(body.message);
+        Swal.fire({
+          icon: 'warning',
+          title: 'Ya existe un usuario con los mismos datos',
+          timer: 3000,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown',
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp',
+          },
+        });
       } else {
         setMessage(body.message);
+        Swal.fire({
+          icon: 'success',
+          title: 'Registrado con exito',
+          timer: 3000,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown',
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp',
+          },
+        });
       }
     } catch (err) {
       console.error(err);

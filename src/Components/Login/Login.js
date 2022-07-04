@@ -3,6 +3,7 @@ import './Login.css';
 import { useToken } from '../../TokenContext';
 import { Link, Navigate } from 'react-router-dom';
 import { FiUserCheck } from 'react-icons/fi';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const [token, setToken] = useToken();
@@ -36,7 +37,11 @@ const Login = () => {
       const body = await response.json();
 
       if (body.status === 'error') {
-        setError(body.message);
+        Swal.fire({
+          icon: 'error',
+          title: 'Vaya...😕',
+          text: 'Email o contraseña incorrecto!',
+        });
       } else {
         setToken(body.data.token);
       }
