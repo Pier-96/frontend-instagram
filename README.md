@@ -40,7 +40,7 @@ Implementar frontend que permita hacer peticiones al backend de la aplicación.
     - idUser
     - vote
     - idPost
-    -createdAt
+    - createdAt
 
 # Endpoints clientes (usuarios anónimos)
 
@@ -56,8 +56,8 @@ Implementar frontend que permita hacer peticiones al backend de la aplicación.
 
 # Endpoints (usuarios registrados)
 
-POST [/posts] - Permite crear un post (necesita cabecera con token) ✅
+- POST [/posts] - Permite crear un post (necesita cabecera con token) ✅
 
-DELETE [/posts/:idPost] - Borra un post solo si eres quien lo creó (necesita cabecera con token) ✅
+- DELETE [/posts/:idPost] - Borra un post solo si eres quien lo creó (necesita cabecera con token) ✅
 
-POST [/posts/:idPost/like] Dar/Quitar un like ✅
+- POST [/posts/:idPost/like] Dar/Quitar un like ✅

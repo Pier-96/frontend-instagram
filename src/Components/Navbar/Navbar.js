@@ -2,6 +2,8 @@ import React from 'react';
 import './Navbar.css';
 import { BsFillArrowLeftSquareFill } from 'react-icons/bs';
 
+// Navbar para los post con id
+
 const Navbar = () => {
   return (
     <main className='Second-nav'>

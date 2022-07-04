@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
+// Envolvemos el token en toda la aplicación guardandolo en el localStorage.
+
 const TokenContext = createContext(null);
 
 export const TokenProvider = ({ children }) => {

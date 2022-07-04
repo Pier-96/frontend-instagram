@@ -1,7 +1,6 @@
 import React from 'react';
 import './NewPost.css';
 import Navbar from '../Navbar/Navbar';
-
 import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useToken } from '../../TokenContext';
@@ -51,6 +50,7 @@ const NewPost = () => {
     }
   };
 
+  // Si no estás registrado te redirige al login
   if (!token || success) return <Navigate to='/' />;
 
   return (
